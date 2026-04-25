@@ -1,5 +1,6 @@
 #include "CTable.h"
 #include <stdio.h>
+#include <iostream>
 
 CTable::CTable(CPlayer* p1, CPlayer* p2, CDominoes* d)
     : player1(p1), player2(p2), dominoes(d), head(-1), tail(-1), consecutivePasses(0) {
@@ -78,8 +79,10 @@ void CTable::first_piece(int& currentPlayer) {
 void* CTable::playerThread(void* arg) {
     TurnData* data = static_cast<TurnData*>(arg);
 
+    std::cerr << std::endl << "Player " << data->player->getName() << " acquiring lock on game data" << std::endl << std::endl;
     pthread_mutex_lock(&data->table->tableMutex);
     data->played = data->table->take_turn(*data->player);
+    std::cerr << std::endl << "Player " << data->player->getName() << " releasing lock on game data" << std::endl;
     pthread_mutex_unlock(&data->table->tableMutex);
 
     return NULL;
