@@ -1,5 +1,5 @@
 /*
-Author: Abdulhamid Oguntade, Kris Heck
+Author: Abdulhamid Oguntade, Kris Heck, Salahudin Saleh
 Course: CSCI 300
 Combo 2 - Option 1: Dominoes Game using POSIX multi-threading
 
